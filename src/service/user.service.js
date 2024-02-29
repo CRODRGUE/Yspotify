@@ -18,7 +18,6 @@ async function SaveUser({ username, password }) {
             account_link: false,
             id: null,
             name: null,
-            access_token: null,
             refresh_token: null,
         },
         groupe: {

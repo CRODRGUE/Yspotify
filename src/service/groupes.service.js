@@ -44,7 +44,6 @@ function listGroupe() {
 async function getGroupeInfo({ nameGroupe }) {
     let listMembers = [];
     for (const user of tool.listUsers.filter(u => u.groupe.name === nameGroupe)) {
-        console.log(user.username);
         let userInfo = {
             username: user.username,
             isAdmin: user.groupe.admin,
@@ -98,7 +97,6 @@ async function getCurrentSong({ username }) {
         }
     }).then((response) => {
         if (response.status == 200) {
-            console.log(response.status);
             return {
                 context_uri: response.data.item.album.uri,
                 offset: {

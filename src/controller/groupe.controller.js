@@ -5,6 +5,7 @@ async function JoinGroupe(req, res) {
     // #swagger.tags = ['Les groupes']
     // #swagger.security = [{"BearerAuth": []}]
     // #swagger.description = 'Cet endpoints (FT-4), permet à un utilisateur authentifié de pouvoir adhérer à un groupe ou bien de créer un groupe si celui-ci n\'est pas déjà présent sur le service'
+
     // Récuperation des données nécessaires pour répondre à la demande
     let data = {
         username: res.locals.dataToken.username,
@@ -62,6 +63,10 @@ async function InfoGroupe(req, res) {
 }
 
 async function SynchronizeSongGroupe(req, res) {
+    // #swagger.tags = ['Synchronisation de la musique d\'un groupe']
+    // #swagger.security = [{"BearerAuth": []}]
+    // #swagger.description = 'Cet endpoints (FT-7), permet à un utilisateur authentifié et qui a lié son compte Spotify de pouvoir synchroniser sa musique en cours d\'écoute avec les membre de son groupe. uniquement s\'il est admin du groupe'
+
     // Récuperation des données nécessaires pour répondre à la demande
     let data = {
         nameGroupe: req.params.name_groupe,

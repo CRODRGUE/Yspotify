@@ -4,7 +4,7 @@ const tool = require('../tool/data.tool');
 
 
 async function CreatePlaylist(req, res) {
-    // #swagger.tags = ['Personnalité de l\'utilisateur']
+    // #swagger.tags = ['Synchronisation de la musique d'un groupe']
     // #swagger.security = [{"BearerAuth": []}]
     // #swagger.description = 'Cet endpoints (FT-6), permet à un utilisateur authentifié et qui a lié son compte Spotify de pouvoir obtenir des données sur ses goûts musicaux grâce à l'analyse de ses titres likées'
 
@@ -19,7 +19,7 @@ async function CreatePlaylist(req, res) {
     const userAsk = tool.listUsers.find(u => u.username == data.username_ask);
     const userTarget = tool.listUsers.find(u => u.username == data.username_target);
     // Vérification que les deux utilisateurs adhèrent au même groupe
-    if (!userAsk.groupe.name || !userTarget.groupe.name || userAsk.groupe.name != userTarget.groupe.name) {
+    if (!userAsk || !userTarget || !userAsk.groupe.name || !userTarget.groupe.name || userAsk.groupe.name != userTarget.groupe.name) {
         return res.status(403).json({ code: 403, message: 'Impossible d\'exécuter cette demande, due à problème de groupe' });
     }
     // Vérification que les comptes des deux utilisateurs soient liée

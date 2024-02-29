@@ -8,7 +8,5 @@ module.exports = linkSpotifyAccountRoutes => {
     // Route pour gérer la réponse de la demande de liaison du compte Spotify 
     router.get('/spotify/callback', controller.LinkSpotifyAccountCallBack);
 
-    //router.get('/spotify/refersh', controller.LinkSpotifyAccountCallBack);
-
     linkSpotifyAccountRoutes.use(router);
 }

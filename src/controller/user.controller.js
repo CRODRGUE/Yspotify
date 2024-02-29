@@ -3,6 +3,7 @@ const service = require('../service/user.service');
 async function Singup(req, res) {
     // #swagger.tags = [' Connexion & Inscription']
     // #swagger.description = 'Cet endpoints (FT-1), permet à un utilisateur non authentifié de pouvoir s\'inscrire au service'
+
     // Récupération des données de l'utilisateur
     const { username, password } = req.body;
     // Vérification de la conformité des données (uniquement la présence)
@@ -21,6 +22,7 @@ async function Singin(req, res) {
     // #swagger.tags = [' Connexion & Inscription']
     // #swagger.security = [{"BasicAuth": []}]
     // #swagger.description = 'Cet endpoints (FT-2), permet à un utilisateur de pouvoir s\'authentifier au près du service'
+
     // Récupération du token (Basic) pour permettre l'authentification
     let token = req.headers['authorization'] || req.headers['Authorization'];
     // Vérification de la correspondance du token (Basic)

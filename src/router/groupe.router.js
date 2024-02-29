@@ -10,8 +10,6 @@ module.exports = groupeRoutes => {
     router.get('/groupes/:name_groupe/members', middleware.checkTokenJWT, controller.InfoGroupe);
     // Route pour synchroniser la musique avec son groupe
     router.get('/groupes/:name_groupe/synchronize', middleware.checkTokenJWT, controller.SynchronizeSongGroupe);
-    // Route pour gérer la playliste avec un membre d'un groupe
-    router.get('/groupes/:name_groupe/playlist/:name_user', middleware.checkTokenJWT);
     // Route pour obtenir la liste des groupes 
     router.get('/groupes', middleware.checkTokenJWT, controller.ListGroupe);
 

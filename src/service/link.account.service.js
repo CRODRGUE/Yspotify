@@ -70,7 +70,6 @@ async function getSpotifyUserData({ access_token, refresh_token, username }) {
         let user = tool.listUsers.find(u => u.username == username);
 
         user.spotify = {
-            access_token: access_token,
             refresh_token: refresh_token,
             id: response.data.id,
             name: response.data.display_name
@@ -110,56 +109,9 @@ async function refershSpotifyToken({ username }) {
     return null;
 }
 
-async function callBackLinkAccount({ code, state }) {
-    console.log('callBackLinkAccount');
-    // Vérification et récupération de l'username du demandeur
-    const reqByUser = listLink.get(state);
-    if (!reqByUser) {
-        return null
-    }
-    // Suppression de la demande de la map (variable global)
-    listLink.delete(state);
-
-
-    // Demande du token, aprés verification du demandeur
-    await axios.post('https://accounts.spotify.com/api/token', {
-        code: code,
-        redirect_uri: REDIRECT_URI,
-        grant_type: 'authorization_code'
-    }, {
-        headers: {
-            'content-type': 'application/x-www-form-urlencoded',
-            Authorization: 'Basic ' + (new Buffer.from(CLIENT_ID + ':' + CLIENT_SECRET).toString('base64'))
-        }
-    }).then(async (reponseToken) => {
-        await axios.get('https://api.spotify.com/v1/me', {
-            headers: {
-                'Authorization': `Bearer ${reponseToken.data.access_token}`
-            }
-        }).then(async (reponseUser) => {
-            let user = tool.listUsers.find(u => u.username == reqByUser);
-
-            user.spotify = {
-                access_token: reponseToken.data.access_token,
-                refresh_token: reponseToken.data.refresh_token,
-                id: reponseUser.data.id,
-                name: reponseUser.data.display_name
-            };
-
-            await tool.WriteFileDataUser(JSON.stringify(tool.listUsers));
-            return user;
-        }).catch((errorUser) => {
-            console.log("Oupsss erreur (GET)....", errorUser.response.status, errorUser.response.data);
-        });
-
-    }).catch((errorToken) => {
-        console.log("Oupsss erreur (POST)....", errorToken.response.status);
-    });
-}
 
 module.exports = {
     urlLinkAccount,
-    callBackLinkAccount,
     getSpotifyToken,
     getSpotifyUserData,
     refershSpotifyToken

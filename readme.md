@@ -23,8 +23,10 @@ Pour lancer le service Yspotify localement sur votre machine, il vous faudra avo
  `git clone https://github.com/CRODRGUE/Yspotify.git`  
 * Placer vous à la racine du projet, grâce à la commande suivante :  
   `cd  /Yspotify` 
-* Installer les dépendances nécessaires au projet avec la commande ci-dessous :
+* Installer les dépendances nécessaires au projet avec la commande ci-dessous :  
 ` npm install `
-* Lancer le projet en exécutant la commande ci-dessous :
+* Lancer le projet en exécutant la commande ci-dessous :  
 ` npm run start`
 * Ouvrer votre navigateur préfère puis aller l'URL suivant : `http://localhost:8080/api-docs`
+
+**Mot de passe pour les comptes : azerty13**

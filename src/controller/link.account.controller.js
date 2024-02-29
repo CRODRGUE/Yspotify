@@ -33,22 +33,12 @@ async function LinkSpotifyAccountCallBack(req, res) {
     if (!dataToken.code || !dataToken.state) {
         return res.status(400).json({ code: 400, message: "Liaison du compte Spotify impossible, il manque des données pour effectuer cette demande" });
     }
-    console.log({ code: dataToken.code, state: dataToken.state });
     const spotifyToken = await service.getSpotifyToken({ code: dataToken.code, state: dataToken.state });
-    console.log(`spotifyToken ===> ${spotifyToken}`);
-    console.log({ access_token: spotifyToken?.access_token, refresh_token: spotifyToken?.refresh_token, username: spotifyToken?.username });
     const spotifyUserData = await service.getSpotifyUserData({ access_token: spotifyToken?.access_token, refresh_token: spotifyToken?.refresh_token, username: spotifyToken?.username });
-    console.log(`spotifyUserData ===> ${spotifyUserData}`);
-    if (!spotifyToken || !spotifyToken) {
+    if (!spotifyToken || !spotifyUserData) {
         return res.status(400).json({ code: 400, message: "Échec de la liaison du compte Spotify, une erreur est survenu" }); // ici bp ? */
     }
-    return res.status(200).json({ code: 200, message: 'Liaison du compte Spotify réussie avec succès' })
-    /* const linkAccountRes = await service.callBackLinkAccount(dataToken);
-    console.log("LinkSpotifyAccountCallBack ==>", linkAccountRes); // undefine
-    if (linkAccountRes != null) {
-        return res.status(200).json({ code: 200, message: 'Liaison du compte Spotify réussie avec succès' })
-    }
-    return res.status(400).json({ code: 400, message: "Échec de la liaison du compte Spotify, une erreur est survenu" }) // ici bp ? */
+    return res.status(200).json({ code: 200, message: 'Liaison du compte Spotify réussie avec succès' });
 }
 
 module.exports = {

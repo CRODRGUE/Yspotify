@@ -85,22 +85,12 @@
         ]
       }
     },
-    "/test": {
-      "get": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/spotify/link": {
       "get": {
         "tags": [
           "Liaison du compte Spotify"
         ],
-        "description": "Cet endpoints (FT-3), permet à un utilisateur authentifié de pouvoir demander la liaison de son compte Spotify au service pour profiter des fonctionnalités qui exploite l",
+        "description": "Cet endpoints (FT-3), permet à un utilisateur authentifié de pouvoir demander la liaison de son compte Spotify au service pour profiter des fonctionnalités qui exploite l\\'API de Spotify",
         "parameters": [
           {
             "name": "authorization",
@@ -118,6 +108,9 @@
           }
         ],
         "responses": {
+          "200": {
+            "description": "OK"
+          },
           "401": {
             "description": "Unauthorized"
           },
@@ -202,8 +195,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
           },
           "400": {
             "description": "Bad Request"
@@ -276,61 +269,13 @@
     },
     "/groupes/{name_groupe}/synchronize": {
       "get": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "name_groupe",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          }
+        "tags": [
+          "Synchronisation de la musique d"
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          }
-        }
-      }
-    },
-    "/groupes/{name_groupe}/playlist/{name_user}": {
-      "get": {
-        "description": "",
+        "description": "Cet endpoints (FT-7), permet à un utilisateur authentifié et qui a lié son compte Spotify de pouvoir synchroniser sa musique en cours d",
         "parameters": [
           {
             "name": "name_groupe",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "name_user",
             "in": "path",
             "required": true,
             "schema": {
@@ -359,7 +304,12 @@
           "403": {
             "description": "Forbidden"
           }
-        }
+        },
+        "security": [
+          {
+            "BearerAuth": []
+          }
+        ]
       }
     },
     "/groupes": {
@@ -405,9 +355,9 @@
     "/me/personality": {
       "get": {
         "tags": [
-          "Personnalité de l"
+          "Personnalité de l\\'utilisateur"
         ],
-        "description": "Cet endpoints (FT-6), permet à un utilisateur authentifié et qui a lié son compte Spotify de pouvoir obtenir des données sur ses goûts musicaux grâce à l",
+        "description": "Cet endpoints (FT-6), permet à un utilisateur authentifié et qui a lié son compte Spotify de pouvoir obtenir des données sur ses goûts musicaux grâce à l\\'analyse de ses titres likées",
         "parameters": [
           {
             "name": "authorization",
@@ -445,7 +395,7 @@
     "/playlist/{username_target}": {
       "post": {
         "tags": [
-          "Personnalité de l"
+          "Synchronisation de la musique d"
         ],
         "description": "Cet endpoints (FT-6), permet à un utilisateur authentifié et qui a lié son compte Spotify de pouvoir obtenir des données sur ses goûts musicaux grâce à l",
         "parameters": [
@@ -473,8 +423,8 @@
           }
         ],
         "responses": {
-          "200": {
-            "description": "OK"
+          "201": {
+            "description": "Created"
           },
           "204": {
             "description": "No Content"
