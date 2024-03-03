@@ -1,7 +1,9 @@
 const express = require('express');
 const swagger = require('swagger-ui-express');
+const dotenv = require('dotenv');
 const app = express();
-const PORT = 8080;
+dotenv.config();
+const PORT = process.env.PORT;
 
 app.use(express.json())
 
@@ -13,3 +15,4 @@ require('./src/router/playlist.router')(app);
 app.use('/api-docs', swagger.serve, swagger.setup(require('./swagger/swagger-doc.json')))
 
 app.listen(PORT, () => console.log(`Serveur disponible : http://localhost:${PORT}`));
+

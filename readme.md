@@ -25,6 +25,7 @@ Pour lancer le service Yspotify localement sur votre machine, il vous faudra avo
   `cd  /Yspotify` 
 * Installer les dépendances nécessaires au projet avec la commande ci-dessous :  
 ` npm install `
+* Mettre le fichier contenant les variables d'environnement à la racine du projet et le fichier user.json dans le dossier data (envoyé sur Teams)
 * Lancer le projet en exécutant la commande ci-dessous :  
 ` npm run start`
 * Ouvrer votre navigateur préfère puis aller l'URL suivant : `http://localhost:8080/api-docs`

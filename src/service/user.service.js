@@ -2,7 +2,7 @@ const tool = require('../tool/data.tool');
 const crypto = require('crypto');
 const jwt = require('jsonwebtoken');
 
-const SECRET_KEY = 'SECRET_KEY';
+const SECRET_KEY = process.env.SECRET_KEY;
 
 async function SaveUser({ username, password }) {
     // Vérification de la disponibilité du "username"

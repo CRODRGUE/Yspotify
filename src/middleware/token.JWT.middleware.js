@@ -1,5 +1,6 @@
 const jwt = require('jsonwebtoken');
-const SECRET_KEY = 'SECRET_KEY';
+const SECRET_KEY = process.env.SECRET_KEY;
+
 
 function checkTokenJWT(req, res, next) {
     // Récupération du token dans le header
@@ -8,6 +9,7 @@ function checkTokenJWT(req, res, next) {
     if (!token & !token.startsWith('Bearer ')) {
         return res.status(403).json({ code: 403, message: "Probleme lié au type de token" })
     }
+
 
     if (token) {
         // Récupération du token JWT

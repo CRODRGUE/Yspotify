@@ -5,8 +5,8 @@ const tool = require('../tool/data.tool');
 
 
 
-const CLIENT_ID = 'a11a1ff2abe5464c99ce0ab61e5adb53';
-const CLIENT_SECRET = 'c543ddcbd77e48e29fe0754915cf258b';
+const CLIENT_ID = process.env.CLIENT_ID;
+const CLIENT_SECRET = process.env.CLIENT_SECRET;
 const LIST_SCOPE = ['user-read-private', 'user-read-email', 'user-library-read', 'user-read-currently-playing', 'user-modify-playback-state', 'playlist-modify-public', 'playlist-modify-private', 'user-read-playback-state'];
 const REDIRECT_URI = 'http://localhost:8080/spotify/callback';
 
